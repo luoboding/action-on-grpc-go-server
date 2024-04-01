@@ -172,6 +172,6 @@ func main() {
 ```
 
 #### 参考链接
-[protobuf](https://protobuf.dev/)
-[grpc](https://grpc.io/docs/languages/go/quickstart/)
-[grpc-go](https://github.com/grpc/grpc-go)
+- [protobuf](https://protobuf.dev/)
+- [grpc](https://grpc.io/docs/languages/go/quickstart/)
+- [grpc-go](https://github.com/grpc/grpc-go)
