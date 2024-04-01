@@ -1,0 +1,95 @@
+syntax = "proto3";
+package orders;
+// required
+option go_package = "action-on-grpc-server/orders";
+
+import "google/protobuf/timestamp.proto";
+
+service OrderService {
+    rpc CreateOrder(OrderCreateRequest) returns (OrderResponse) {}
+    rpc ListOrders(ListOrdersRequest) returns (OrdersResponse) {}
+    rpc OrderDetail(OrderDetailRequest) returns (OrderDetailResponse) {}
+}
+
+message OrderDetailRequest {
+    string order_no = 1;
+}
+
+message OrderDetailResponse {
+    int64 user_id  = 1;
+    repeated OrderProduct products = 2;
+    // 创建时间
+    google.protobuf.Timestamp created_at = 4;
+    // 更新时间
+    google.protobuf.Timestamp updated_at = 5;
+    // 总价
+    int64 total = 6;
+}
+
+message OrderProduct {
+    // 商品编号
+    string product_no = 1;
+    // 商品数量
+    int32 number = 2;
+    // 商品标题
+    string product_title = 3;
+    // 商品描述
+    string product_description = 4;
+    // 商品原价
+    int64 origin_price = 5;
+    // 商品价格
+    int64  price = 6;
+    // 商品缩略图
+    string product_thumbnail = 7;
+}
+
+message OrderCreateRequest {
+    // 用户id
+    int64 user_id  = 1;
+    // 订单商品
+    repeated OrderProduct products = 2;
+    // 备注
+    string remark = 3;
+    // 创建时间
+    google.protobuf.Timestamp created_at = 4;
+    // 更新时间
+    google.protobuf.Timestamp updated_at = 5;
+}
+
+message OrderResponse {
+    // 订单编号
+    string order_no = 1;
+    // 用户id
+    int64 user_id  = 2;
+    repeated OrderProduct products = 3;
+    // 创建时间
+    google.protobuf.Timestamp created_at = 4;
+    // 更新时间
+    google.protobuf.Timestamp updated_at = 5;
+    // 总价
+    int64 total = 6;
+}
+
+message ListOrdersRequest {
+    // 每页数量
+    int32 size = 1;
+    // 当前页码
+    int32 current = 2;
+    // 用户id
+    int64 user_id = 3;
+    // 商品编号
+    string product_no = 4;
+    // 商品名称
+    string prodcut_name = 5;
+}
+
+message OrdersResponse {
+    // 订单数据
+    repeated OrderResponse orders = 1;
+    // 每页数量
+    int32 size = 2;
+    // 当前页码
+    int32 current = 3;
+}
+
+
