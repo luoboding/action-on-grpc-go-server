@@ -100,7 +100,7 @@ message ListOrdersRequest {
     // 商品编号
     string product_no = 4;
     // 商品名称
-    string prodcut_name = 5;
+    string product_name = 5;
 }
 
 message OrdersResponse {
